@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { config } from 'aws-sdk';
 
 async function bootstrap() {
+  const PORT = process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);
   config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -10,6 +11,6 @@ async function bootstrap() {
     region: process.env.AWS_REGION,
   });
 
-  await app.listen(3000);
+  await app.listen(PORT);
 }
 bootstrap();
